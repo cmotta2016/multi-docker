@@ -21,3 +21,16 @@ after_success:
  - docker push cmotta2016/multi-nginx
  - docker push cmotta2016/multi-server
  - docker push cmotta2016/multi-worker
+
+deploy:
+ provider: elasticbeanstalk
+ region: "sa-east-1"
+ app: "multi-docker"
+ env: "MultiDocker-env"
+ bucket_name: "elasticbeanstalk-sa-east-1-993975117034"
+ bucket_path: "docker-multi"
+ on:
+  branch: master
+ access_key_id: $AWS_ACCESS_KEY
+ secret_access_key:
+  secure: "$AWS_SECRET_KEY"
